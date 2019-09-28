@@ -16,7 +16,7 @@
 
 /*create lnode */
 struct node{
-    int info;        //add more stuff if you want
+    int info;                   //data held in node
     struct node *link;          //pointer to an lnode
 };
 
@@ -35,7 +35,6 @@ int main(void) {
       if (head == NULL) {
          head = (struct node *) malloc(sizeof(struct node));
          head->link = NULL;
-         //tail = (struct node *) malloc(sizeof(struct node));
          tail = head;
          middle = head;
          head->info = i;
@@ -67,8 +66,6 @@ int main(void) {
    next = (struct node *) malloc(sizeof(struct node));
    rover = middle;
    next = rover->link;
-
-
 
    int k;
    for (k = 11; k < 21; k++) {
