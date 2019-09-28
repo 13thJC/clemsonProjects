@@ -20,7 +20,6 @@ struct node{
     struct node *link;          //pointer to an lnode
 };
 
-/* function prototypes */
 
 
 int main(void) {
@@ -60,12 +59,16 @@ int main(void) {
       }
    }
 
-   //insert in middle of list
+   tail->link = head; //make the list circular
+
+   /*insert in middle of list*/
    struct node *rover, *next;
    rover = (struct node *) malloc(sizeof(struct node));
    next = (struct node *) malloc(sizeof(struct node));
    rover = middle;
    next = rover->link;
+
+
 
    int k;
    for (k = 11; k < 21; k++) {
@@ -88,39 +91,30 @@ int main(void) {
          temp = head;
          head = head->link;
          temp = NULL;
+         tail->link = head;
       }
    }
 
-   //print
-   temp = head;
-   while (temp ->info  < 30) {
-      printf(" List after remove: [%d]\n", temp->info);
-      temp = temp->link;
-   }
+   /*remove from end of list */
+   printf(" Tail of list: [%d]\n", tail->info);
+   printf(" Beginning of list: [%d]\n", tail->link->info);
 
-
-
-   //remove from end of list
-   count = 0;
-   temp = head;
-   prev = NULL;
-   for(count = 0; count < 5; count++) {
-      while (temp != NULL) {
-         prev = temp;
-         temp = temp->link;
+   struct node *current;
+   current = head;
+   for (count = 25; count > 20; count--) {
+      while (current->link != tail) {
+         current = current->link;
       }
-      free(temp);
-      prev->link = NULL;
-}
-
-   prev = head;
-
-   //print list
-   list = head;
-   while (list ->info  < 30) {
-      printf(" Final list: [%d]\n", temp->info);
-      list = list->link;
+      tail = current;
+      tail->link = head;
    }
+
+   /*print list*/
+   rover = head;
+   do {
+     printf(" Final list: [%d]\n", rover->info);
+     rover = rover->link;
+   } while(rover != head);
 
    return 0;
 }
