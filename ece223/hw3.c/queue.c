@@ -38,8 +38,8 @@ qdata isempty(*q) {
 }
 /* function to add elements to the queue from the rear */
 void enqueue(*q, qdata data) {
-	node *temp; 						// create a new node to add to the queue
-	temp = malloc(sizeof(node));		//request memory for the node
+	node *temp; 				// create a new node to add to the queue
+	temp = malloc(sizeof(node));	//request memory for the node
 	temp->data = data;
 	temp->next = NULL;
 	/* if queue not empty, add to end of queue */
@@ -55,13 +55,11 @@ void enqueue(*q, qdata data) {
 
 /* function to delete the front node and return its value */
 qdata dequeue(q) {
-	node *temp; 		//create a new node to add to the queue
-	temp = q->front; 	//point the temp node to the front of the queue
+	node *temp; 			//create a new node to add to the queue
+	temp = q->front; 		//point the temp node to the front of the queue
 	int hold = temp->data;	//store the value of data into a temp variable
 	q->front = q->front->next;	//make the next node in the queue front
 	free(temp);					//delete the front node
 	q->count--;					//decrement the amount of elements in queue
 	return hold;				//return the value from the old front
 }
-
-/*
