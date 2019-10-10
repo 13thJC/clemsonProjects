@@ -12,37 +12,34 @@ typedef struct node {
 
 /*	create queue which pointers to the first node in the queue, the last
 	and the amount of items in the queue*/
-typedef struct qHeader {
+typedef struct Queue {
 	int count;
 	node *front;
 	node *rear;
-} qHeader;
+} queue;
 
 /*	initialize queue by setting count to 0
 	and pointing the head and tail to NULL */
-void initialize(*q) {
-	qHeader *header = (qHeader *)malloc(sizeof(qHeader));
-	*q = header;
-	header->front = NULL;
-	header->rear = NULL;
-	header->count = 0;
+queue* initialize() {
+	queue  *q = malloc(sizeof(q));
+	q->front = NULL;
+	q->rear = NULL;
+	q->count = 0;
+	return (q);
 }
-/* check to see if queue is empty
-qdata isempty(*q) {
-	header = (qHeader *)malloc(sizeof(qHeader));
-	q = header;
+/* check to see if queue is empty */
+int isempty(queue *q) {
 	if ((q->front == NULL) && (q->rear == NULL)) {
        printf("\nQueue is empty." );
-	   return 0;
+	   return 1;
    } else {
 	   printf("\nQueue is not empty." );
-	   return 1;
+	   printf("\n");
+	   return 0;
    }
-} */
-/* function to add elements to the queue from the rear
-void enqueue(*q, qdata data) {
-	qHeader *header = (qHeader *)malloc(sizeof(qHeader));
-	q = header;
+}
+/* function to add elements to the queue from the rear */
+void enqueue(queue *q, qdata data) {
 	node *temp; 				// create a new node to add to the queue
 	temp = (node *)malloc(sizeof(node));	//request memory for the node
 	temp->data = data;
@@ -55,8 +52,8 @@ void enqueue(*q, qdata data) {
 	} else {
 		q->front = q->rear = temp;
 	}
-	q->count++;
-} */
+	q->count++;							// update size of queue
+}
 
 /* function to delete the front node and return its value
 qdata dequeue(q) {
@@ -73,6 +70,9 @@ qdata dequeue(q) {
 	return hold;				//return the value from the old front
 } */
 int main() {
-  // call a function in another file
-  return(0);
+	queue *newQueue = initialize();		//create queue
+	isempty(newQueue);					//check to see if queue is empty
+	enqueue(newQueue,1);
+	isempty(newQueue);
+	return(0);
 }
