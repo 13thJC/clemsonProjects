@@ -11,11 +11,7 @@ typedef	struct Queue queue;
 /*function declarations*/
 queue* initialize();
 int isempty(queue *q);
-/*
-void front();
-void isfull();
-void enqueue(q, qdata data);
-qdata dequeue(q);
-void destroy(*q);
-*/
+void enqueue(queue *q, qdata data);
+int front(queue *q);
+void dequeue(queue *q);
 #endif
